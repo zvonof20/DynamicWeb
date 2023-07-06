@@ -43,7 +43,7 @@ public class DataBasaFacade {
 				  preparedStatement.executeUpdate();
 				
 			} catch (SQLException e) {
-				System.out.println("add book is fail");
+				System.out.println("add book failed");
 				e.printStackTrace();
 			}
 		}
