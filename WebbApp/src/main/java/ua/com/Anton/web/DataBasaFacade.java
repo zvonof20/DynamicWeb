@@ -14,7 +14,7 @@ public class DataBasaFacade {
 			List<String> result = new ArrayList<String>();
 			
 			try(Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres5","postgres", "1234")) {
-				System.out.println("Connect to DataBase	");
+				System.out.println("Connect to DataBase");
 				
 				Statement statment = connection.createStatement();
 				
