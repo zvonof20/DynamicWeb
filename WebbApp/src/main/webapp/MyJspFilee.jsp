@@ -1,28 +1,101 @@
 <%@page import="java.util.List"%>
 <%@page import="ua.com.Anton.web.DataBasaFacade"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
         .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
             border: 1px solid #ccc;
             padding: 20px;
-            width: 300px;
-            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        form {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
         }
         
         .message {
-            position: absolute;
-            top: 10px;
-            right: 10px;
             font-style: italic;
             color: #999;
+            margin-bottom: 10px;
+        }
+        
+        .book-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .book-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .book-list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .book-list-item a {
+            margin-left: 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        
+        .book-list-item a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <h1>Book Library</h1>
         <form action="" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required><br>
@@ -41,13 +114,15 @@
         } %>
         
         <h2>Book List:</h2>
-        <% 
-        List<String> bookList = DataBasaFacade.getBooks();
-        for (String book : bookList) {
-            %><div><%= book %> 
-            <a href="EditJsp.jsp?book=<%= book %>">Edit</a>
-            <a href="DeleteJsp.jsp?book=<%= book %>">Delete</a></div><%
-        } %>
+        <ul class="book-list">
+            <% 
+            List<String> bookList = DataBasaFacade.getBooks();
+            for (String book : bookList) {
+                %><li class="book-list-item"><%= book %> 
+                <a href="EditJsp.jsp?book=<%= book %>">Edit</a>
+                <a href="DeleteJsp.jsp?book=<%= book %>">Delete</a></li><%
+            } %>
+        </ul>
     </div>
 </body>
 </html>
