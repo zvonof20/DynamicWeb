@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="ua.com.Anton.web.DataBasaFacade"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -38,10 +39,15 @@
             // После успешного добавления выводим сообщение и название книги
             %><div class="message">Book added: <%= name %></div><%
         } %>
+        
+        <h2>Book List:</h2>
+        <% // Получение списка книг из базы данных
+        List<String> bookList = DataBasaFacade.getBooks();
+        for (String book : bookList) {
+            %><div><%= book %> 
+            <a href="EditJsp.jsp?book=<%= book %>">Edit</a>
+            <a href="DeleteJsp.jsp?book=<%= book %>">Delete</a></div><%
+        } %>
     </div>
 </body>
 </html>
-
-
-
-
