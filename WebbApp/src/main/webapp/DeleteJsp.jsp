@@ -28,14 +28,14 @@
             <input type="text" name="name" id="name" value="<%= request.getParameter("book") %>" readonly><br>
             <input type="submit" value="Delete Book">
         </form>
-        <% // Проверка, был ли отправлен POST-запрос
+        <% 
         if (request.getMethod().equalsIgnoreCase("post")) {
             String name = request.getParameter("name");
-            // Вызов метода удаления данных из базы данных
+            
             DataBasaFacade.deleteBook(name);
-            // После успешного удаления выводим сообщение и название книги
+           
             %><div class="message">Book deleted: <%= name %></div><%
-            response.sendRedirect("MyJspFilee.jsp"); // Перенаправление на главную страницу
+            response.sendRedirect("MyJspFilee.jsp"); 
         } %>
     </div>
 </body>
