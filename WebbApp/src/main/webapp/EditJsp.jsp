@@ -28,14 +28,14 @@
             <input type="text" name="name" id="name" value="<%= request.getParameter("book") %>" required><br>
             <input type="submit" value="Update Book">
         </form>
-        <% // Проверка, был ли отправлен POST-запрос
+        <% 
         if (request.getMethod().equalsIgnoreCase("post")) {
             String name = request.getParameter("name");
-            // Вызов метода обновления данных в базе данных
+            
             DataBasaFacade.updateBook(request.getParameter("book"), name);
-            // После успешного обновления выводим сообщение и название книги
+            
             %><div class="message">Book updated: <%= name %></div><%
-            response.sendRedirect("MyJspFilee.jsp"); // Перенаправление на главную страницу
+            response.sendRedirect("MyJspFilee.jsp"); 
         } %>
     </div>
 </body>
