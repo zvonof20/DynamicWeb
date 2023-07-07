@@ -30,18 +30,18 @@
             <input type="number" name="id" id="id" required><br>
             <input type="submit" value="Add Book">
         </form>
-        <% // Проверка, был ли отправлен POST-запрос
+        <% 
         if (request.getMethod().equalsIgnoreCase("post")) {
             String name = request.getParameter("name");
             int id = Integer.parseInt(request.getParameter("id"));
-            // Вызов метода добавления данных в базу данных
+            
             DataBasaFacade.addBook(name, id);
-            // После успешного добавления выводим сообщение и название книги
+            
             %><div class="message">Book added: <%= name %></div><%
         } %>
         
         <h2>Book List:</h2>
-        <% // Получение списка книг из базы данных
+        <% 
         List<String> bookList = DataBasaFacade.getBooks();
         for (String book : bookList) {
             %><div><%= book %> 
