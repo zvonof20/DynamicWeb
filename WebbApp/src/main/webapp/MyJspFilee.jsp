@@ -1,6 +1,7 @@
 <%@page import="ua.com.Anton.web.DataBasaFacade"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,9 +123,23 @@
         } %>
         
         <h2>Book List:</h2>
+        
+        <form action="" method="get">
+            <input type="text" name="search" placeholder="Search books">
+            <input type="submit" value="Search">
+        </form>
+        
         <ul class="book-list">
             <% 
-            List<String> bookList = DataBasaFacade.getBooks();
+            List<String> bookList;
+            
+            String searchQuery = request.getParameter("search");
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                bookList = DataBasaFacade.searchBooks(searchQuery);
+            } else {
+                bookList = DataBasaFacade.getBooks();
+            }
+            
             for (String book : bookList) {
                 %><li class="book-list-item"><%= book %> 
                 <a href="EditJsp.jsp?book=<%= book %>">Edit</a>
