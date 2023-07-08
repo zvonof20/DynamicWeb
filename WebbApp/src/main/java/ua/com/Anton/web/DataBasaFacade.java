@@ -78,4 +78,28 @@ public class DataBasaFacade {
             e.printStackTrace();
         }
     }
+    
+    public static List<String> searchBooks(String keyword) {
+        List<String> result = new ArrayList<String>();
+        
+        try(Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres5","postgres", "1234")) {
+            System.out.println("Connect to DataBase");
+            
+            String searchQuery = "SELECT * FROM chat.app WHERE name LIKE ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(searchQuery);
+            preparedStatement.setString(1, "%" + keyword + "%");
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()) {
+                result.add(resultSet.getString("name"));
+            }
+                    
+        } catch (SQLException e) {
+            System.out.println("Connection fail");
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
 }
