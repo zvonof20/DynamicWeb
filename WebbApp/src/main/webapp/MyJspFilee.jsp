@@ -1,5 +1,5 @@
-<%@page import="java.util.List"%>
 <%@page import="ua.com.Anton.web.DataBasaFacade"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,13 @@
         h1 {
             text-align: center;
             margin-top: 0;
+        }
+        
+        .date {
+            text-align: right;
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 10px;
         }
         
         form {
@@ -95,7 +102,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Book Library</h1>
+        <h1>Welcome to Book Library</h1>
+        <div class="date">Current Date and Time: <%= new java.util.Date() %></div>
         <form action="" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required><br>
